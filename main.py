@@ -3,12 +3,18 @@ CMPS 2200  Recitation 2
 """
 
 ### the only imports needed are here
-import tabulate
-import time
+
+#import tabulate
+
 ###
 
 def simple_work_calc(n, a, b):
-	"""Compute the value of the recurrence $W(n) = aW(n/b) + n
+  if n == 1:
+    return n
+
+  return a * (n // b) + n
+  
+  """Compute the value of the recurrence $W(n) = aW(n/b) + n
 
 	Params:
 	n......input integer
@@ -17,11 +23,17 @@ def simple_work_calc(n, a, b):
 
 	Returns: the value of W(n).
 	"""
-	# TODO
-	pass
+  
 
 def work_calc(n, a, b, f):
-	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
+
+  if n == 1:
+    return n
+
+  return a * (n // b) + f(n)
+  
+ 
+  """Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
 
 	Params:
 	n......input integer
@@ -32,11 +44,15 @@ def work_calc(n, a, b, f):
 
 	Returns: the value of W(n).
 	"""
-	# TODO
-	pass
+  
 
 def span_calc(n, a, b, f):
-	"""Compute the span associated with the recurrence $W(n) = aW(n/b) + f(n)
+  if n == 1:
+    return n
+
+  return span_calc(n // b, a, b, f) + f(n)
+  
+  """Compute the span associated with the recurrence $W(n) = aW(n/b) + f(n)
 
 	Params:
 	n......input integer
@@ -48,12 +64,22 @@ def span_calc(n, a, b, f):
 	Returns: the value of W(n).
 	"""
 	# TODO
-	pass
+	
 
 
 
 def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000]):
-	"""
+
+  result = []
+  for n in sizes:
+    # compute W(n) using current a, b, f
+      result.append((
+          n,
+          work_fn1(n),
+          work_fn2(n)
+      ))
+  return result
+  """
 	Compare the values of different recurrences for 
 	given input sizes.
 
@@ -62,22 +88,14 @@ def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000])
 	(n, work_fn1(n), work_fn2(n), ...)
 	
 	"""
-	result = []
-	for n in sizes:
-		# compute W(n) using current a, b, f
-		result.append((
-			n,
-			work_fn1(n),
-			work_fn2(n)
-			))
-	return result
+  
 
 def print_results(results):
-	""" done """
-	print(tabulate.tabulate(results,
-							headers=['n', 'W_1', 'W_2'],
-							floatfmt=".3f",
-							tablefmt="github"))
+  """ done """
+  print(tabulate.tabulate(results,
+                    headers=['n', 'W_1', 'W_2'],
+                    floatfmt=".3f",
+                    tablefmt="github"))
 
 
 
