@@ -1,5 +1,5 @@
 from main import *
-
+import tabulate
 import math
 
 def test_simple_work():
