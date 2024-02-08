@@ -4,7 +4,7 @@ CMPS 2200  Recitation 2
 
 ### the only imports needed are here
 
-#import tabulate
+import tabulate
 
 ###
 
